@@ -12,14 +12,14 @@ class AdminController < ApplicationController
 			  query: {
 			    multi_match: {
 			      query:    "#{params[:normal_user][:term]}",
-			      type:       "phrase_prefix",
+			      #type:       "phrase_prefix",
 			      fields: [ 'email', 'name','phonenumber' ]
 			    }
 			  }
 			}
 		)
-		if(@users.response.length==0)
-			render plain:@users.results
+		if(@users.first==nil)
+			render plain:{msg:"search is empty"}
 		end
 		
   	end

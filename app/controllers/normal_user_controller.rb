@@ -19,8 +19,9 @@ class NormalUserController < ApplicationController
 
   		@user=Normaluser.new(normal_user_params)
 		if @user.save
-
-			redirect_to controller: 'normal_user', action: 'show', id: @user.id
+			render json:{id: @user.id,
+				msg: "successfully created user"}
+			#redirect_to controller: 'normal_user', action: 'show', id: @user.id
 
 		else
 			render plain:{msg:"could not insert data"}
